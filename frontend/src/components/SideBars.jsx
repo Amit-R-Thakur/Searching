@@ -34,7 +34,7 @@ export default function SideBars({ sideBar, setSidebar, list }) {
         >
           <List>
             {list.map((li, k) => (
-                <NavLink to={li.link} style={{textDecoration:"none",color:"#141414"}}>
+                <NavLink key={k} to={li.link} style={{textDecoration:"none",color:"#141414"}}>
               <ListItem
                 button
                 style={{ marginTop: "20px",fontSize:"30px" }}

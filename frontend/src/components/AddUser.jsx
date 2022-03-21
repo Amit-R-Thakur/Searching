@@ -1,6 +1,23 @@
 import React from "react";
 import {Button, Grid, TextField, Typography } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { SetUser,ValidateData } from "../redux/action/signup";
 export default function AddUser() {
+  const dispatch=useDispatch()
+  const theAddState=useSelector((state)=>state.signUpReducer)
+  const setCustomer=(e)=>{
+    const {name,value}=e.target
+    dispatch(SetUser(name,value))
+  }
+  const sendData=async()=>{
+    try{
+      dispatch(ValidateData())
+
+    }
+    catch(err){
+      console.log(err.response.data)
+    }
+  }
   return (
     <div
       style={{
@@ -37,26 +54,27 @@ export default function AddUser() {
 
               </Grid>
               <Grid item  xs={12} sm={12} md={6} xl={6}>
-                  <TextField fullWidth variant="standard" label="First Name" required/>
+                  <TextField fullWidth variant="standard" label="First Name" required value={theAddState.fName} name="fName" onChange={setCustomer}/>
+                  <div style={{marginTop:"10px",color:"red"}}><b >This is Required * Field</b></div>
 
               </Grid>
               <Grid item  xs={12} sm={12} md={6} xl={6}>
-              <TextField fullWidth variant="standard" label="Last Name" required/>
+              <TextField fullWidth variant="standard" label="Last Name" required value={theAddState.lName} name="lName" onChange={setCustomer}/>
 
               </Grid>
               <Grid item  xs={12} sm={12} md={6} xl={6}>
-                  <TextField fullWidth variant="standard" label="City" required/>
+                  <TextField fullWidth variant="standard" label="City" value={theAddState.city} name="city" required onChange={setCustomer}/>
 
               </Grid>
               <Grid item  xs={12} sm={12} md={6} xl={6}>
-              <TextField fullWidth variant="standard" label="Company" required/>
+              <TextField fullWidth variant="standard" label="Company" required value={theAddState.company} name="company" onChange={setCustomer}/>
 
               </Grid>
               <Grid item xs={12}  sm={12} md={6} xl={6}>
                   <Button fullWidth variant="contained" color="error">Clear</Button>
               </Grid>
               <Grid item xs={12}  sm={12} md={6} xl={6}>
-              <Button fullWidth variant="contained" color="success">Add</Button>              </Grid>
+              <Button fullWidth variant="contained" color="success" onClick={sendData}>Add Customer</Button>              </Grid>
           </Grid>
         
       </div>
