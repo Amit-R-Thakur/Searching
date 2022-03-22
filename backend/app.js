@@ -4,8 +4,12 @@ const app =express()
 const port=process.env.PORT||3443
 const customersRoute=require("./routes/custumers")
 const rootRoute="/sublime/api"
+// const data=require("./fakedata.json")
+// const user=require("./models/customers")
+require("./database/connect")
 app.use(express.json())
 app.use(cors())
+
 app.get("/",(req,res)=>{res.send("Hello")})
 app.use(rootRoute,customersRoute)
 app.listen(port,()=>{
