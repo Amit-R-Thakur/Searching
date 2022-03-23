@@ -35,7 +35,7 @@ export default function CustomerListContainer() {
     <div style={{height:"calc(100vh - 8%)",backgroundColor:"",display:"flex",alignItems:"center",justifyContent:"space-around"}}>
         <div className="container" style={{width:"88%",height:"90%", boxShadow: "rgba(100, 100, 111, 0.151) 0px 7px 29px 0px",display:"grid",gridTemplateRows:"15% 1fr 10%"}}>
             <div className="searchContainer" style={{display:"flex",justifyItems:"center",justifyContent:"right",padding:"2%"}}>
-                <TextField label="Search By Name" onChange={(e)=>{setPage(1);setSearch(e.target.value);navigate(`/users?page${page}&search=${e.target.value}`)}} />
+                <TextField label="Search By Name" onChange={(e)=>{setPage(1);setSearch(e.target.value);navigate(`/users?page=${page}&search=${e.target.value}`)}} />
 
             </div>
             <div className="dataContainer">

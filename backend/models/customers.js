@@ -21,4 +21,5 @@ const CustomerSchema = new mongoose.Schema({
     uppercase: true,
   },
 });
-module.exports=new mongoose.model("customer",CustomerSchema)
+const customer= new mongoose.model("customer",CustomerSchema)
+module.exports=customer

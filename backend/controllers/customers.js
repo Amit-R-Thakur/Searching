@@ -20,7 +20,6 @@ exports.getAllCustomers=async(req,res)=>{
     try{
         const limit=8
         const {page,search}=req.query
-        console.log(req.query)
         const start=(Number(page)-1)*limit
         let totalDoc;
         if(search)
@@ -41,5 +40,21 @@ exports.getAllCustomers=async(req,res)=>{
     catch(err){
         console.log(err)
         return res.status(400).send("data not found!")
+    }
+}
+
+exports.getUniqueCityAndNumberOfStudent=async(req,res)=>{
+    try{
+        let dataToSend=[]
+        const theCity=await customer.find().distinct("city")
+       for(let i=0;i<theCity.length;i++){
+           const totalUser=await customer.count({city:theCity[i]})
+           dataToSend.push({city:theCity[i],customers:totalUser})
+       }
+       res.send(dataToSend)
+
+    }
+    catch(err){
+        console.log(err)
     }
 }
