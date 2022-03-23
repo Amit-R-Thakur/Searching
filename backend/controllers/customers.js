@@ -19,11 +19,20 @@ exports.AddCustomers=async(req,res)=>{
 exports.getAllCustomers=async(req,res)=>{
     try{
         const limit=8
-        const {page}=req.query
+        const {page,search}=req.query
+        console.log(req.query)
         const start=(Number(page)-1)*limit
-        const totalDoc=await customer.count()
+        let totalDoc;
+        if(search)
+         totalDoc=await customer.count({$or:[{first_name:{$regex:search}}]})
+        else
+         totalDoc=await customer.count()
         const totalPage=Math.ceil(totalDoc/limit)
-        const data=await customer.find({}).skip(start).limit(limit)
+        let data;
+        if(search)
+         data=await customer.find({$or:[{first_name:{$regex:search}}]}).skip(start).limit(limit)
+         else
+         data=await customer.find({}).skip(start).limit(limit)
         if(!data)
         return res.status(400).send("data not found!")
         return res.status(200).send({users:data,totalPage})
