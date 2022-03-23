@@ -58,3 +58,21 @@ exports.getUniqueCityAndNumberOfStudent=async(req,res)=>{
         console.log(err)
     }
 }
+
+exports.getCustomerById=async(req,res)=>{
+    try{
+       
+        const {_id}=req.params
+        if(!_id)
+        return res.status(400).send("id is required!")
+        const theCustomer=await customer.findById(_id)
+        if(!theCustomer)
+        return res.status(400).send("user not found!")
+        return res.status(200).send(theCustomer)
+
+    }
+    catch(err){
+        console.log(err)
+        return res.status(400).send("user not found!")
+    }
+}

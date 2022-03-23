@@ -55,7 +55,7 @@ export default function CustomerListContainer() {
         {theUserState.users.map((u,k)=>(
             <StyledTableRow key={k}>
                 <StyledTableCell align='center'>{k+1}</StyledTableCell>
-            <StyledTableCell align='center'>{u.first_name}</StyledTableCell>
+            <StyledTableCell align='center'><NavLink style={{textDecoration:"none",color:"blue"}} to={`/users/${u._id}`}>{u.first_name}</NavLink></StyledTableCell>
             <StyledTableCell align='center'>{u.last_name}</StyledTableCell>
             <StyledTableCell align='center'>{u.city}</StyledTableCell>
             <StyledTableCell align='center'>{u.company}</StyledTableCell>

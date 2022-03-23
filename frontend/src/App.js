@@ -2,6 +2,7 @@ import Dashboard from "./pages/Dashboard";
 import "./App.css"
 import AddCustomer from "./pages/AddCustomer";
 import CityList from "./pages/CityList";
+import ProfileDetailsPage from "./pages/ProfileDetailsPage"
 import { BrowserRouter , Routes ,Route, Navigate} from 'react-router-dom'
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate replace to={"/users"}/>}/>
         <Route path="/users" element={<Dashboard/>}/>
+        <Route path="/users/:id" element={<ProfileDetailsPage/>}/>
         <Route path="/add/customer" element={<AddCustomer/>}/>
         <Route path="/city/list" element={<CityList/>}/>
       </Routes>
