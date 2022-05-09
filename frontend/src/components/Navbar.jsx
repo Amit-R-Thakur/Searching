@@ -27,7 +27,7 @@ export default function Navbar({list}) {
           }}
         >
           <h3 style={{ fontSize: "30px", textShadow: " #FC0 1px 0 10px" }}>
-           {"<"}Sublime{"/>"}
+           {"<"}Searching{"/>"}
           </h3>
         </div>
         <div
